@@ -1,4 +1,4 @@
-const markdownFiles = import.meta.glob('../docs/**/*.md', {
+const markdownFiles = import.meta.glob('/docs/**/*.md', {
   query: '?raw',
   eager: true
 });
