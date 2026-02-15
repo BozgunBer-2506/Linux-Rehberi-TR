@@ -27,7 +27,7 @@ Rehberimiz 23 ana başlıktan oluşmaktadır:
 ### 🌐 Canlı Uygulama
 
 Etkileşimli içerik ve pratik testler için:
-👉 **[www.deneme.com](http://www.deneme.com)**
+👉 **[www.linux-rehberi-tr.vercel.app](https://linux-rehberi-tr.vercel.app/)**
 
 ---
 
@@ -58,7 +58,7 @@ Our guide consists of 23 main chapters:
 ### 🌐 Live Demo
 
 For interactive content and quizzes:
-👉 **[www.deneme.com](http://www.deneme.com)**
+👉 **[www.linux-rehberi-tr.vercel.app](https://linux-rehberi-tr.vercel.app/)**
 
 ---
 
