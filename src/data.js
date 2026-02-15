@@ -13,9 +13,7 @@ export const allSections = Object.keys(markdownFiles)
     const idMatch = folderName.match(/^\d+/);
     const numericId = idMatch ? parseInt(idMatch[0], 10) : 999;
     const baseTitleFromFolder = folderName.replace(/^\d+-/, '').replace(/-/g, ' ').trim().toUpperCase();
-    const finalTitle = fileName && fileName.toUpperCase() !== 'README' && fileName.toUpperCase() !== 'INDEX'
-      ? `${baseTitleFromFolder} - ${fileName.replace(/-/g, ' ').toUpperCase()}`
-      : baseTitleFromFolder;
+    const finalTitle = baseTitleFromFolder;
     return {
       id: path,
       sortOrder: numericId,
