@@ -56,6 +56,32 @@ nav button span {
   }
 }
 
+@layer components {
+  .prose table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  .prose th,
+  .prose td {
+    padding: 10px 16px;
+    text-align: left;
+  }
+
+  .prose th:first-child,
+  .prose td:first-child {
+    width: 140px;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    padding-right: 32px;
+  }
+
+  .prose th:last-child,
+  .prose td:last-child {
+    padding-left: 24px;
+  }
+}
+
+
 summary::-webkit-details-marker { display: none; }
 .custom-scrollbar::-webkit-scrollbar { width: 4px; }
 .custom-scrollbar::-webkit-scrollbar-thumb { background: #FF990066; border-radius: 10px; }

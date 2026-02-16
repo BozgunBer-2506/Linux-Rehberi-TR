@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import { ChevronDown, Search, GraduationCap, Terminal, Github, Menu } from 'lucide-react';
+import { useState, useEffect } from 'react';
+import { ChevronDown, Search, GraduationCap, Terminal, Github, Menu, ArrowLeft, ArrowRight, ArrowUp, Maximize2, Minimize2 } from 'lucide-react';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import rehypeRaw from 'rehype-raw';
@@ -9,11 +9,23 @@ import { allSections } from './data';
 
 function App() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [isCollapsed, setIsCollapsed] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
+  const [showScrollTop, setShowScrollTop] = useState(false);
   const [selectedSection, setSelectedSection] = useState(() => {
     const saved = localStorage.getItem('lastLinuxSectionId');
     return saved ? allSections.find(s => s.id === saved) : null;
   });
+
+  useEffect(() => {
+    const handleScroll = (e) => {
+      if (e.target.scrollTop > 300) setShowScrollTop(true);
+      else setShowScrollTop(false);
+    };
+    const mainElement = document.querySelector('main');
+    mainElement?.addEventListener('scroll', handleScroll);
+    return () => mainElement?.removeEventListener('scroll', handleScroll);
+  }, []);
 
   const filteredSections = allSections.filter(section => {
     const searchLower = searchTerm.toLowerCase();
@@ -26,13 +38,23 @@ function App() {
   const handlePageChange = (section) => {
     setSelectedSection(section);
     setIsSidebarOpen(false);
-    if (section) localStorage.setItem('lastLinuxSectionId', section.id);
+    if (section) {
+      localStorage.setItem('lastLinuxSectionId', section.id);
+      document.querySelector('main').scrollTo(0, 0);
+    }
   };
+
+  const currentIndex = allSections.findIndex(s => s.id === selectedSection?.id);
+  const prevSection = currentIndex > 0 ? allSections[currentIndex - 1] : null;
+  const nextSection = currentIndex < allSections.length - 1 ? allSections[currentIndex + 1] : null;
 
   return (
     <div className="flex h-screen w-screen bg-[#0f172a] text-white font-sans overflow-hidden">
 
-      <aside className={`fixed lg:static inset-y-0 left-0 z-50 w-72 bg-[#1e293b] border-r border-slate-800 transition-transform ${isSidebarOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'}`}>
+      {/* SIDEBAR */}
+      <aside className={`fixed lg:static inset-y-0 left-0 z-50 w-72 bg-[#1e293b] border-r border-slate-800 transition-all duration-300 
+        ${isSidebarOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'} 
+        ${isCollapsed ? 'lg:hidden' : 'lg:block'}`}>
         <div className="flex flex-col h-full p-6">
           <div className="mb-8 cursor-pointer text-center" onClick={() => handlePageChange(null)}>
             <h1 className="text-xl font-black tracking-widest uppercase">LINUX REHBERİ</h1>
@@ -71,38 +93,76 @@ function App() {
         </div>
       </aside>
 
-      <main className="flex-1 overflow-y-auto bg-[#0f172a] scroll-smooth">
+      <main className="flex-1 overflow-y-auto bg-[#0f172a] scroll-smooth relative">
+        <button
+          onClick={() => setIsCollapsed(!isCollapsed)}
+          className="hidden lg:flex fixed top-6 right-8 z-[70] items-center gap-2 bg-slate-800/80 hover:bg-[#FF6B35] text-slate-300 hover:text-white px-3 py-1.5 rounded-full border border-slate-700 transition-all shadow-xl backdrop-blur-sm"
+        >
+          {isCollapsed ? <Maximize2 size={16} /> : <Minimize2 size={16} />}
+          <span className="text-[10px] font-bold uppercase tracking-widest">
+            {isCollapsed ? 'Genişlet' : 'Odak Modu'}
+          </span>
+        </button>
+
         {selectedSection ? (
           <article className="max-w-3xl mx-auto px-6 py-16">
-            <ReactMarkdown
-              remarkPlugins={[remarkGfm]}
-              rehypePlugins={[rehypeRaw]}
-              components={{
-                h1: ({ children }) => <h1 className="text-4xl font-black mb-12 border-b border-slate-800 pb-8">{children}</h1>,
-                h2: ({ children }) => <h2 className="text-2xl font-bold mt-12 mb-6 border-b border-slate-800 pb-2 italic">{children}</h2>,
-                h3: ({ children }) => <h3 className="text-xl font-bold text-[#FF6B35] mt-8 mb-4">{children}</h3>,
-                p: ({ children }) => <p className="text-slate-300 mb-6 text-lg leading-relaxed">{children}</p>,
-                code({ inline, className, children, ...props }) {
-                  const match = /language-(\w+)/.exec(className || '');
-                  return !inline && match ? (
-                    <SyntaxHighlighter style={atomDark} language={match[1]} PreTag="div" {...props}>
-                      {String(children).replace(/\n$/, '')}
-                    </SyntaxHighlighter>
-                  ) : (
-                    <code className="bg-slate-800 text-[#FF6B35] px-1.5 py-0.5 rounded font-mono text-sm" {...props}>{children}</code>
-                  );
-                },
-                details: ({ children }) => <details className="bg-slate-800/30 border border-slate-700 rounded-lg p-4 mb-6">{children}</details>,
-                summary: ({ children }) => (
-                  <summary className="font-black text-[#FF6B35] cursor-pointer text-sm flex justify-between items-center list-none">
-                    <div className="flex items-center gap-2"><GraduationCap size={18} /> {children}</div>
-                    <ChevronDown size={18} />
-                  </summary>
-                )
-              }}
-            >
-              {selectedSection.content}
-            </ReactMarkdown>
+            <div className="prose prose-invert max-w-none">
+              <ReactMarkdown
+                remarkPlugins={[remarkGfm]}
+                rehypePlugins={[rehypeRaw]}
+                components={{
+                  h1: ({ children }) => <h1 className="text-4xl font-black mb-12 border-b border-slate-800 pb-8">{children}</h1>,
+                  h2: ({ children }) => <h2 className="text-2xl font-bold mt-12 mb-6 border-b border-slate-800 pb-2 italic">{children}</h2>,
+                  h3: ({ children }) => <h3 className="text-xl font-bold text-[#FF6B35] mt-8 mb-4">{children}</h3>,
+                  p: ({ children }) => <p className="text-slate-300 mb-6 text-lg leading-relaxed">{children}</p>,
+                  code({ inline, className, children, ...props }) {
+                    const match = /language-(\w+)/.exec(className || '');
+                    return !inline && match ? (
+                      <SyntaxHighlighter style={atomDark} language={match[1]} PreTag="div" {...props}>
+                        {String(children).replace(/\n$/, '')}
+                      </SyntaxHighlighter>
+                    ) : (
+                      <code className="bg-slate-800 text-[#FF6B35] px-1.5 py-0.5 rounded font-mono text-sm" {...props}>{children}</code>
+                    );
+                  },
+                  details: ({ children }) => <details className="bg-slate-800/30 border border-slate-700 rounded-lg p-4 mb-6">{children}</details>,
+                  summary: ({ children }) => (
+                    <summary className="font-black text-[#FF6B35] cursor-pointer text-sm flex justify-between items-center list-none">
+                      <div className="flex items-center gap-2"><GraduationCap size={18} /> {children}</div>
+                      <ChevronDown size={18} />
+                    </summary>
+                  )
+                }}
+              >
+                {selectedSection.content}
+              </ReactMarkdown>
+            </div>
+
+            <div className="mt-16 pt-8 border-t border-slate-800 flex justify-between gap-4">
+              {prevSection ? (
+                <button
+                  onClick={() => handlePageChange(prevSection)}
+                  className="flex flex-col items-start p-4 rounded-lg bg-slate-800/50 hover:bg-slate-800 transition-all border border-slate-700 w-1/2 group"
+                >
+                  <span className="text-xs text-slate-500 mb-1 flex items-center gap-1">
+                    <ArrowLeft size={12} /> Önceki Sayfa
+                  </span>
+                  <span className="text-sm font-bold group-hover:text-[#FF6B35]">{prevSection.title}</span>
+                </button>
+              ) : <div className="w-1/2"></div>}
+
+              {nextSection ? (
+                <button
+                  onClick={() => handlePageChange(nextSection)}
+                  className="flex flex-col items-end p-4 rounded-lg bg-slate-800/50 hover:bg-slate-800 transition-all border border-slate-700 w-1/2 group text-right"
+                >
+                  <span className="text-xs text-slate-500 mb-1 flex items-center gap-1">
+                    Sonraki Sayfa <ArrowRight size={12} />
+                  </span>
+                  <span className="text-sm font-bold group-hover:text-[#FF6B35]">{nextSection.title}</span>
+                </button>
+              ) : <div className="w-1/2"></div>}
+            </div>
           </article>
         ) : (
           <div className="h-full flex flex-col items-center justify-center p-8 text-center">
@@ -114,6 +174,15 @@ function App() {
               Menüden bir konu seçerek hemen başlayabilirsin.
             </p>
           </div>
+        )}
+
+        {showScrollTop && (
+          <button
+            onClick={() => document.querySelector('main').scrollTo({ top: 0, behavior: 'smooth' })}
+            className="fixed bottom-8 right-8 bg-[#FF6B35] text-white p-3 rounded-full shadow-2xl z-[60] hover:scale-110 transition-transform border-2 border-white/20"
+          >
+            <ArrowUp size={24} />
+          </button>
         )}
       </main>
 
