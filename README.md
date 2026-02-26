@@ -8,9 +8,9 @@ Bu depo, modern bilişim dünyasının kalbi olan Linux'u sistematik bir sırayl
 
 Linux'un hızlı yükselişi tesadüf değildir. Bugün internetin %90'ından fazlası Linux sunucularda döner. **Açık Kaynak (Open Source)** avantajı sayesinde:
 
-* **Maliyet ve Şeffaflık:** Lisans ücreti yok, gizli arka kapılar yok.
-* **Hız ve Stabilite:** Tek bir komutla tüm sistemi güncelleyebilir, aylarca yeniden başlatmadan (uptime) çalıştırabilirsiniz.
-* **Sektörel Hakimiyet:** Siber Güvenlik, DevOps ve Yapay Zeka dünyasının ortak dili Linux'tur.
+- **Maliyet ve Şeffaflık:** Lisans ücreti yok, gizli arka kapılar yok.
+- **Hız ve Stabilite:** Tek bir komutla tüm sistemi güncelleyebilir, aylarca yeniden başlatmadan (uptime) çalıştırabilirsiniz.
+- **Sektörel Hakimiyet:** Siber Güvenlik, DevOps ve Yapay Zeka dünyasının ortak dili Linux'tur.
 
 ### 📚 Müfredat İçeriği
 
@@ -39,9 +39,9 @@ This repository is a massive content library that teaches Linux—the heart of t
 
 The rapid rise of Linux is no accident. Today, over 90% of the internet runs on Linux servers. Thanks to the **Open Source** advantage:
 
-* **Cost & Transparency:** No license fees, no hidden backdoors.
-* **Speed & Stability:** Update the entire system with a single command and run for months without a reboot (uptime).
-* **Industry Dominance:** Linux is the common language of Cyber Security, DevOps, and AI.
+- **Cost & Transparency:** No license fees, no hidden backdoors.
+- **Speed & Stability:** Update the entire system with a single command and run for months without a reboot (uptime).
+- **Industry Dominance:** Linux is the common language of Cyber Security, DevOps, and AI.
 
 ### 📚 Curriculum Overview
 
@@ -62,4 +62,10 @@ For interactive content and quizzes:
 
 ---
 
-**Crafted by [The_Bozgun](https://www.google.com/search?q=https://github.com/BozgunBer-2506) | 2026 | MIT License**
+## License
+
+This project is licensed under the **Creative Commons Attribution-NonCommercial 4.0 International (CC BY-NC 4.0)** license. See the [LICENSE](LICENSE) file for more details.
+
+---
+
+**Crafted by The_Bozgun**
