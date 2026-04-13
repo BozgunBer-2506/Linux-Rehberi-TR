@@ -26,23 +26,17 @@ Vim'de yazmaya başlamadan önce hangi modda olduğunuzu bilmelisiniz:
 3. **Visual (Görsel) Mod (v):** Metin bloklarını seçmek içindir.
 4. **Komut Modu (:):** Dosyayı kaydetmek veya çıkmak için kullanılır.
 
-### Kritik Vim Komutları (Hızlı Referans)
 
-Aşağıdaki komutlar Vim editöründe en sık kullanılan temel işlemleri içerir.
 
-| Komut     | Açıklama |
-|-----------|----------|
-| `:w`      | Dosyayı kaydeder |
-| `:q!`     | Değişiklikleri kaydetmeden zorla çıkar |
-| `:wq`     | Dosyayı kaydeder ve çıkar |
-| `dd`      | İmlecin bulunduğu satırı siler |
-| `yy`      | İmlecin bulunduğu satırı kopyalar (yank) |
-| `p`       | Kopyalanan veya kesilen içeriği imleçten sonra yapıştırır |
-| `u`       | Son işlemi geri alır (undo) |
-| `/kelime` | Dosya içinde ileri yönde arama yapar |
-| `n`       | Sonraki arama sonucuna gider |
-| `N`       | Önceki arama sonucuna gider |
-
+### Kritik Vim Komutları (Hile Kağıdı)
+* `:w` -> Kaydet.
+* `:q!` -> Kaydetmeden zorla çık.
+* `:wq` -> Kaydet ve çık.
+* `dd` -> Tüm satırı siler.
+* `yy` -> Satırı kopyalar (yank).
+* `p` -> Yapıştır (paste).
+* `u` -> Geri al (undo).
+* `:/kelime` -> Dosya içinde arama yapar.
 
 ---
 

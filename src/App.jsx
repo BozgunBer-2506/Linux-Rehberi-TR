@@ -50,12 +50,6 @@ function App() {
 
   return (
     <div className="flex h-screen w-screen bg-[#0f172a] text-white font-sans overflow-hidden">
-      <style>{`
-        .goog-logo-link, .goog-te-gadget span, .goog-te-banner-frame { display: none !important; }
-        .goog-te-gadget { color: transparent !important; font-size: 0 !important; }
-        .goog-te-combo { background-color: rgba(30,41,59,0.7) !important; color: #FF6B35 !important; border: 1px solid rgba(255,107,53,0.3) !important; border-radius: 8px !important; padding: 4px 10px !important; font-size: 12px !important; outline: none !important; }
-        body { top: 0px !important; position: static !important; }
-      `}</style>
 
       {/* SIDEBAR */}
       <aside className={`fixed lg:static inset-y-0 left-0 z-50 w-72 bg-[#1e293b] border-r border-slate-800 transition-all duration-300 
@@ -95,7 +89,6 @@ function App() {
               <span className="font-black tracking-tighter text-lg italic">The_Bozgun</span>
             </a>
             <p className="text-[10px] text-slate-600 font-bold uppercase tracking-widest">Copyright 2026</p>
-            <div id="google_translate_element" className="mt-3" />
           </div>
         </div>
       </aside>
@@ -125,13 +118,11 @@ function App() {
                   code({ inline, className, children, ...props }) {
                     const match = /language-(\w+)/.exec(className || '');
                     return !inline && match ? (
-                      <div translate="no" className="notranslate">
-                        <SyntaxHighlighter style={atomDark} language={match[1]} PreTag="div" {...props}>
-                          {String(children).replace(/\n$/, '')}
-                        </SyntaxHighlighter>
-                      </div>
+                      <SyntaxHighlighter style={atomDark} language={match[1]} PreTag="div" {...props}>
+                        {String(children).replace(/\n$/, '')}
+                      </SyntaxHighlighter>
                     ) : (
-                      <code translate="no" className="notranslate bg-slate-800 text-[#FF6B35] px-1.5 py-0.5 rounded font-mono text-sm" {...props}>{children}</code>
+                      <code className="bg-slate-800 text-[#FF6B35] px-1.5 py-0.5 rounded font-mono text-sm" {...props}>{children}</code>
                     );
                   },
                   details: ({ children }) => <details className="bg-slate-800/30 border border-slate-700 rounded-lg p-4 mb-6">{children}</details>,
