@@ -89,6 +89,7 @@ function App() {
               <span className="font-black tracking-tighter text-lg italic">The_Bozgun</span>
             </a>
             <p className="text-[10px] text-slate-600 font-bold uppercase tracking-widest">Copyright 2026</p>
+            <div id="google_translate_element" className="mt-3" />
           </div>
         </div>
       </aside>
@@ -118,11 +119,13 @@ function App() {
                   code({ inline, className, children, ...props }) {
                     const match = /language-(\w+)/.exec(className || '');
                     return !inline && match ? (
-                      <SyntaxHighlighter style={atomDark} language={match[1]} PreTag="div" {...props}>
-                        {String(children).replace(/\n$/, '')}
-                      </SyntaxHighlighter>
+                      <div translate="no" className="notranslate">
+                        <SyntaxHighlighter style={atomDark} language={match[1]} PreTag="div" {...props}>
+                          {String(children).replace(/\n$/, '')}
+                        </SyntaxHighlighter>
+                      </div>
                     ) : (
-                      <code className="bg-slate-800 text-[#FF6B35] px-1.5 py-0.5 rounded font-mono text-sm" {...props}>{children}</code>
+                      <code translate="no" className="notranslate bg-slate-800 text-[#FF6B35] px-1.5 py-0.5 rounded font-mono text-sm" {...props}>{children}</code>
                     );
                   },
                   details: ({ children }) => <details className="bg-slate-800/30 border border-slate-700 rounded-lg p-4 mb-6">{children}</details>,
