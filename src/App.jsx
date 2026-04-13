@@ -50,6 +50,12 @@ function App() {
 
   return (
     <div className="flex h-screen w-screen bg-[#0f172a] text-white font-sans overflow-hidden">
+      <style>{`
+        .goog-logo-link, .goog-te-gadget span, .goog-te-banner-frame { display: none !important; }
+        .goog-te-gadget { color: transparent !important; font-size: 0 !important; }
+        .goog-te-combo { background-color: rgba(30,41,59,0.7) !important; color: #FF6B35 !important; border: 1px solid rgba(255,107,53,0.3) !important; border-radius: 8px !important; padding: 4px 10px !important; font-size: 12px !important; outline: none !important; }
+        body { top: 0px !important; position: static !important; }
+      `}</style>
 
       {/* SIDEBAR */}
       <aside className={`fixed lg:static inset-y-0 left-0 z-50 w-72 bg-[#1e293b] border-r border-slate-800 transition-all duration-300 
