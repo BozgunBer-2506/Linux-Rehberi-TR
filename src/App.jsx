@@ -83,13 +83,11 @@ function App() {
             ))}
           </nav>
 
-          <div className="mt-auto pt-6 border-t border-slate-800">
-            <a href="https://github.com/BozgunBer-2506" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 text-slate-400 hover:text-[#FF6B35] transition-colors mb-2 group">
-              <Github size={18} />
-              <span className="font-black tracking-tighter text-lg italic">The_Bozgun</span>
-            </a>
-            <a href="https://thebozgun.com" target="_blank" rel="noopener noreferrer" className="text-[10px] text-slate-500 hover:text-[#FF6B35] transition-colors font-bold uppercase tracking-widest">thebozgun.com</a>
-            <p className="text-[10px] text-slate-600 font-bold uppercase tracking-widest mt-1">Copyright 2026</p>
+          <div className="mt-auto pt-6 border-t border-slate-800 text-center">
+            <a href="https://github.com/BozgunBer-2506" target="_blank" rel="noopener noreferrer" className="text-[10px] font-bold text-[#FF6B35] tracking-widest">The_Bozgun</a>
+            <br />
+            <a href="https://thebozgun.com" target="_blank" rel="noopener noreferrer" className="text-[10px] text-slate-500 hover:text-[#FF6B35] transition-colors font-bold tracking-widest mt-1 inline-block">thebozgun.com</a>
+            <p className="text-[10px] text-slate-600 font-bold tracking-widest mt-1">© 2026</p>
           </div>
         </div>
       </aside>
