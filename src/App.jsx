@@ -88,7 +88,8 @@ function App() {
               <Github size={18} />
               <span className="font-black tracking-tighter text-lg italic">The_Bozgun</span>
             </a>
-            <p className="text-[10px] text-slate-600 font-bold uppercase tracking-widest">Copyright 2026</p>
+            <a href="https://thebozgun.com" target="_blank" rel="noopener noreferrer" className="text-[10px] text-slate-500 hover:text-[#FF6B35] transition-colors font-bold uppercase tracking-widest">thebozgun.com</a>
+            <p className="text-[10px] text-slate-600 font-bold uppercase tracking-widest mt-1">Copyright 2026</p>
           </div>
         </div>
       </aside>
